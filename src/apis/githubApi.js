@@ -64,6 +64,15 @@ query {
           nodes (ids:${JSON.stringify(ids)}) {
             id
             ... on Repository {
+              collaborators(first: 100) {
+                totalCount
+                edges {
+                  permission
+                  node {
+                    login
+                  }
+                }
+              }
               pullRequests(last: ${maximumPrs} states: [OPEN] orderBy:{ field: CREATED_AT, direction: DESC }) {
                 totalCount
                 edges {
